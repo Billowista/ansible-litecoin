@@ -1,0 +1,33 @@
+---
+- name: Install software-properties-common
+  apt:
+    name: software-properties-common
+    state: present
+
+- name: Add the Bitcoin apt repositoty
+  apt_repository:
+    repo: "{{ bitcoin_apt_repository }}"
+
+- name: Install Lite-coin build dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - autotools-dev
+    - automake
+    - bsdmainutils
+    - build-essential
+    - libboost-system-dev
+    - libboost-filesystem-dev
+    - libboost-chrono-dev
+    - libboost-program-options-dev
+    - libboost-test-dev
+    - libboost-thread-dev
+    - libdb4.8-dev
+    - libdb4.8++-dev
+    - libevent-dev
+    - libssl-dev
+    - libtool
+    - pkg-config
+    - python3

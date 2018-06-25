@@ -1,0 +1,20 @@
+---
+- name: Install dumb init for PID 1 signal handling inside container
+  get_url:
+    dest: /usr/bin/dumb-init
+    url: https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64
+    mode: 0775
+    validate_certs: no
+
+- name: Install Git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
+- name: Create litecoin user
+  user:
+    name: "{{ litecoin_user }}"
+    uid: "{{ litecoin_uid }}"
+    group: root
+    state: present

@@ -1,0 +1,25 @@
+---
+- name: Clone Litecoin source repository
+  git:
+    repo: "{{ litecoin_git_url }}"
+    dest: "{{ source_code_directory }}/litecoin"
+
+- name: Execute the autogen script
+  shell: ./autogen.sh
+  args:
+    chdir: "{{ source_code_directory }}/litecoin"
+    creates: "{{ source_code_directory }}/litecoin/build-aux"
+
+- name: Execute the configure script
+  shell: ./configure
+  args:
+    chdir: "{{ source_code_directory }}/litecoin"
+
+- name: Make the litecoin project
+  make:
+    chdir: "{{ source_code_directory }}/litecoin"
+
+- name: Install litecoind
+  make:
+    chdir: "{{ source_code_directory }}/litecoin"
+    target: install

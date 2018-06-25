@@ -1,0 +1,10 @@
+---
+# External Repository Locations
+bitcoin_apt_repository: 'ppa:bitcoin/bitcoin'
+litecoin_git_url: 'https://github.com/litecoin-project/litecoin.git'
+
+# Machine Configurations
+litecoin_user: litecoin
+litecoin_uid: 1555
+
+source_code_directory: '/usr/local/src'

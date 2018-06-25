@@ -1,0 +1,18 @@
+version: "2"
+
+settings:
+  project_name: ansible-litecoin
+  deployment_output_path: ./ansible-deployment
+  conductor:
+    base: ubuntu:xenial
+
+services: 
+  litecoin:
+    from: ubuntu:xenial
+    roles:
+      - litecoin
+    entrypoint: /usr/bin/dumb-init
+    command: /usr/local/bin/litecoind
+    ports:
+      - 9332:9332
+      - 19332:19332

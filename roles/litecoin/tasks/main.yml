@@ -1,0 +1,9 @@
+- name: Install Litecoin Build dependencies and build the project
+  hosts: all
+  include_tasks: "{{ item_list }}"
+  with_items:
+    - prep-machine.yml
+    - dependencies.yml
+    - litecoin.yml
+  loop_control:
+    loop_var: item_list
